@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Performance Gym — Transform your body, elevate your mind. State-of-the-art facilities, expert trainers, and flexible membership plans." />
+  <meta name="keywords" content="gym, fitness, membership, personal training, performance gym" />
+  <meta property="og:title" content="Performance Gym — Elevate Your Performance" />
+  <meta property="og:description" content="Transform your body, elevate your mind. Join Performance Gym today." />
+  <meta property="og:type" content="website" />
+  <title>Performance Gym — Elevate Your Performance</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<!-- ─── Toast Container ──────────────────────────────────── -->
+<div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ─── Navbar ───────────────────────────────────────────── -->
+<header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="#hero" class="navbar-brand">PERF<span>GYM</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#join">Join</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#join" class="nav-cta">Get Started</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section id="hero" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-badge">🔥 Now Accepting Members</span>
+      <h1>Elevate<br/><span class="text-primary">Your</span><br/>Performance</h1>
+      <p>State-of-the-art facilities, world-class trainers, and a community that pushes you to be your absolute best.</p>
+      <div class="hero-btns">
+        <a href="#join" class="btn btn-primary">
+          Start Your Journey <span>→</span>
+        </a>
+        <a href="#features" class="btn btn-outline">Explore Features</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num" data-count="500" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Active Members</div>
+        </div>
+        <div>
+          <div class="hero-stat-num" data-count="15" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Expert Trainers</div>
+        </div>
+        <div>
+          <div class="hero-stat-num" data-count="98" data-suffix="%">0%</div>
+          <div class="hero-stat-label">Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Features ─────────────────────────────────────────── -->
+<section id="features" class="section section-alt">
+  <div class="container text-center">
+    <h2 class="section-title fade-in">Why <span class="text-primary">Performance Gym?</span></h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">Everything you need to achieve your fitness goals — all in one place.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in fade-in-delay-1">
+        <span class="feature-icon">🏋️</span>
+        <h3>Elite Equipment</h3>
+        <p>200+ machines and free weights from top brands. Everything you need, always maintained to perfection.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-2">
+        <span class="feature-icon">👨‍🏫</span>
+        <h3>Expert Trainers</h3>
+        <p>Certified personal trainers ready to design custom programs tailored to your unique goals.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-3">
+        <span class="feature-icon">📅</span>
+        <h3>100+ Classes Weekly</h3>
+        <p>From HIIT and yoga to powerlifting and spin — find your perfect workout at any time.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-4">
+        <span class="feature-icon">🥤</span>
+        <h3>Nutrition Bar</h3>
+        <p>Post-workout smoothies, protein shakes, and healthy snacks to fuel your recovery.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-1">
+        <span class="feature-icon">♨️</span>
+        <h3>Recovery Zone</h3>
+        <p>Saunas, steam rooms, ice baths, and massage chairs to accelerate your recovery.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-2">
+        <span class="feature-icon">📱</span>
+        <h3>Member App</h3>
+        <p>Book classes, track workouts, view progress stats, and connect with trainers — all from your phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ───────────────────────────────────────────── -->
+<section id="pricing" class="section">
+  <div class="container text-center">
+    <h2 class="section-title fade-in">Simple, <span class="text-primary">Transparent</span> Pricing</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">No hidden fees. Cancel anytime. Pick the plan that works for you.</p>
+
+    <div class="pricing-grid">
+      <!-- Basic -->
+      <div class="pricing-card fade-in fade-in-delay-1">
+        <h3>Basic</h3>
+        <div class="pricing-price">
+          <sup>$</sup>29<span>/mo</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0">Perfect for beginners</p>
+        <ul class="pricing-features">
+          <li>Full gym floor access</li>
+          <li>Locker room &amp; showers</li>
+          <li>5 group classes/month</li>
+          <li>Member app access</li>
+          <li class="disabled">Personal training sessions</li>
+          <li class="disabled">Recovery zone access</li>
+          <li class="disabled">Nutrition bar discount</li>
+        </ul>
+        <button class="btn btn-outline" style="width:100%" data-plan="basic">Choose Basic</button>
+      </div>
+
+      <!-- Standard (popular) -->
+      <div class="pricing-card popular fade-in fade-in-delay-2">
+        <div class="pricing-badge">Most Popular</div>
+        <h3>Standard</h3>
+        <div class="pricing-price">
+          <sup>$</sup>59<span>/mo</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0">For dedicated athletes</p>
+        <ul class="pricing-features">
+          <li>Full gym floor access</li>
+          <li>Locker room &amp; showers</li>
+          <li>Unlimited group classes</li>
+          <li>Member app access</li>
+          <li>2 PT sessions/month</li>
+          <li>Recovery zone access</li>
+          <li class="disabled">Nutrition bar discount</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%" data-plan="standard">Choose Standard</button>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card fade-in fade-in-delay-3">
+        <h3>Premium</h3>
+        <div class="pricing-price">
+          <sup>$</sup>99<span>/mo</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0">All-inclusive experience</p>
+        <ul class="pricing-features">
+          <li>Full gym floor access</li>
+          <li>Locker room &amp; showers</li>
+          <li>Unlimited group classes</li>
+          <li>Member app access</li>
+          <li>Unlimited PT sessions</li>
+          <li>Recovery zone access</li>
+          <li>20% nutrition bar discount</li>
+        </ul>
+        <button class="btn btn-outline" style="width:100%" data-plan="premium">Choose Premium</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ──────────────────────────────────────── -->
+<section id="testimonials" class="section section-alt">
+  <div class="container text-center">
+    <h2 class="section-title fade-in">What Our <span class="text-primary">Members</span> Say</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">Real results from real people. Join our community of achievers.</p>
+
+    <div class="testimonials-grid" id="testimonials-grid">
+      <!-- Loaded dynamically via JS -->
+      <div style="text-align:center;padding:3rem;color:var(--text-muted)">
+        <div class="spinner"></div>
+        <p style="margin-top:1rem">Loading testimonials…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA Banner ────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">Ready to Transform<br/>Your Life?</h2>
+    <p class="fade-in fade-in-delay-1">Join 500+ members already crushing their goals at Performance Gym. Your first week is on us.</p>
+    <a href="#join" class="btn btn-outline fade-in fade-in-delay-2" style="border-color:#fff;color:#fff">
+      Start Your Free Trial →
+    </a>
+  </div>
+</section>
+
+<!-- ─── Join / Booking + Contact ──────────────────────────── -->
+<section id="join" class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title fade-in">Join <span class="text-primary">Performance Gym</span></h2>
+      <p class="section-subtitle fade-in fade-in-delay-1">Fill out the form below and we'll get you started within 24 hours.</p>
+    </div>
+
+    <div class="forms-grid" id="contact">
+      <!-- Booking Form -->
+      <div class="form-card fade-in">
+        <h3>Start Your <span class="text-primary">Membership</span></h3>
+        <p>Choose your plan and we'll confirm your membership via email.</p>
+
+        <form id="booking-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b-name">Full Name *</label>
+              <input type="text" id="b-name" name="name" placeholder="John Smith" autocomplete="name" />
+              <span class="field-error" data-error="name"></span>
+            </div>
+            <div class="form-group">
+              <label for="b-phone">Phone Number *</label>
+              <input type="tel" id="b-phone" name="phone" placeholder="+1 555 000 0000" autocomplete="tel" />
+              <span class="field-error" data-error="phone"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="b-email">Email Address *</label>
+            <input type="email" id="b-email" name="email" placeholder="john@example.com" autocomplete="email" />
+            <span class="field-error" data-error="email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="b-plan">Membership Plan *</label>
+            <select id="b-plan" name="plan">
+              <option value="">— Select a plan —</option>
+              <option value="basic">Basic — $29/mo</option>
+              <option value="standard">Standard — $59/mo</option>
+              <option value="premium">Premium — $99/mo</option>
+            </select>
+            <span class="field-error" data-error="plan"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%">
+            <span class="spinner-sm"></span>
+            <span class="btn-text">Submit Booking</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="form-card fade-in fade-in-delay-2">
+        <h3>Get in <span class="text-primary">Touch</span></h3>
+        <p>Have questions? We'd love to hear from you. Send us a message!</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Full Name *</label>
+              <input type="text" id="c-name" name="name" placeholder="Jane Smith" autocomplete="name" />
+              <span class="field-error" data-error="name"></span>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email Address *</label>
+              <input type="email" id="c-email" name="email" placeholder="jane@example.com" autocomplete="email" />
+              <span class="field-error" data-error="email"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c-subject">Subject *</label>
+            <input type="text" id="c-subject" name="subject" placeholder="Question about membership…" />
+            <span class="field-error" data-error="subject"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="c-message">Message *</label>
+            <textarea id="c-message" name="message" placeholder="Tell us how we can help…"></textarea>
+            <span class="field-error" data-error="message"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%">
+            <span class="spinner-sm"></span>
+            <span class="btn-text">Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">PERF<span>GYM</span></div>
+        <p class="footer-desc">Transforming lives through fitness since 2018. Your performance is our mission.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#join">Join Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul class="footer-links">
+          <li><a href="#join">Personal Training</a></li>
+          <li><a href="#join">Group Classes</a></li>
+          <li><a href="#join">Nutrition Plans</a></li>
+          <li><a href="#join">Recovery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@perfgym.com">hello@perfgym.com</a></li>
+          <li><a href="tel:+15550001234">+1 555 000 1234</a></li>
+          <li>123 Fitness Ave, NY</li>
+          <li>Mon–Sun: 5am – 11pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Performance Gym. All rights reserved.</span>
+      <span>Built with ❤️ for athletes</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
