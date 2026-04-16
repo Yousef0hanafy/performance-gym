@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Performance Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- Login Overlay -->
+<div id="login-overlay">
+  <div class="login-card">
+    <h2>Admin <span class="text-primary">Login</span></h2>
+    <p>Default credentials: <code>admin / changeme123</code></p>
+    <div id="login-error">Invalid username or password.</div>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="login-user">Username</label>
+        <input type="text" id="login-user" name="username" value="admin" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="login-pass">Password</label>
+        <input type="password" id="login-pass" name="password" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">
+        <span class="spinner-sm"></span>
+        <span class="btn-text">Sign In</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Admin App -->
+<div class="admin-layout" id="admin-app" style="display:none">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      PERF<span>GYM</span>
+      <small>Admin Dashboard</small>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <a href="#" class="active" data-tab="dashboard"><span class="icon">📊</span> Dashboard</a>
+      <a href="#" data-tab="bookings"><span class="icon">📋</span> Bookings</a>
+      <a href="#" data-tab="contacts"><span class="icon">✉️</span> Contacts</a>
+      <a href="#" data-tab="testimonials"><span class="icon">⭐</span> Testimonials</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" style="display:block;margin-bottom:.5rem">← View Site</a>
+      <a href="#" id="logout-btn" style="color:var(--danger)">Sign Out</a>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- Dashboard -->
+    <div class="tab-panel active" id="tab-dashboard">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <button class="btn btn-sm btn-outline" id="refresh-btn">↻ Refresh</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">📋</span>
+          <div class="stat-value" id="stat-bookings">—</div>
+          <div class="stat-label">Total Bookings</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⏳</span>
+          <div class="stat-value" id="stat-pending">—</div>
+          <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">✉️</span>
+          <div class="stat-value" id="stat-contacts">—</div>
+          <div class="stat-label">Total Contacts</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-value" id="stat-testimonials">—</div>
+          <div class="stat-label">Testimonials</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Recent Bookings</h2>
+          <button class="btn btn-sm btn-outline" onclick="switchTab('bookings')">View All</button>
+        </div>
+        <div class="panel-body">
+          <table class="data-table">
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Plan</th><th>Status</th><th>Date</th></tr>
+            </thead>
+            <tbody id="recent-bookings-body">
+              <tr><td colspan="5" class="empty-state">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Recent Contacts</h2>
+          <button class="btn btn-sm btn-outline" onclick="switchTab('contacts')">View All</button>
+        </div>
+        <div class="panel-body">
+          <table class="data-table">
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Subject</th><th>Date</th></tr>
+            </thead>
+            <tbody id="recent-contacts-body">
+              <tr><td colspan="4" class="empty-state">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bookings Tab -->
+    <div class="tab-panel" id="tab-bookings">
+      <div class="admin-header"><h1>Bookings</h1></div>
+      <div class="panel">
+        <div class="panel-header"><h2>All Bookings</h2></div>
+        <div class="panel-body">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Name</th><th>Email</th><th>Phone</th>
+                <th>Plan</th><th>Status</th><th>Date</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-bookings-body">
+              <tr><td colspan="8" class="empty-state">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contacts Tab -->
+    <div class="tab-panel" id="tab-contacts">
+      <div class="admin-header"><h1>Messages</h1></div>
+      <div class="panel">
+        <div class="panel-header"><h2>All Messages</h2></div>
+        <div class="panel-body">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Name</th><th>Email</th><th>Subject</th>
+                <th>Message</th><th>Date</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-contacts-body">
+              <tr><td colspan="7" class="empty-state">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Tab -->
+    <div class="tab-panel" id="tab-testimonials">
+      <div class="admin-header">
+        <h1>Testimonials</h1>
+        <button class="btn btn-sm btn-primary" id="add-testimonial-btn">+ Add Testimonial</button>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><h2>All Testimonials</h2></div>
+        <div id="add-testimonial-form">
+          <h3>Add New Testimonial</h3>
+          <form id="testimonial-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Author Name *</label>
+                <input type="text" name="name" placeholder="Member name" />
+              </div>
+              <div class="form-group">
+                <label>Rating (1–5) *</label>
+                <select name="rating">
+                  <option value="5">★★★★★ (5)</option>
+                  <option value="4">★★★★☆ (4)</option>
+                  <option value="3">★★★☆☆ (3)</option>
+                  <option value="2">★★☆☆☆ (2)</option>
+                  <option value="1">★☆☆☆☆ (1)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Quote *</label>
+              <textarea name="quote" placeholder="Member testimonial…" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Avatar Image URL (optional)</label>
+              <input type="url" name="image_url" placeholder="https://…" />
+            </div>
+            <div style="display:flex;gap:1rem">
+              <button type="submit" class="btn btn-primary btn-sm">
+                <span class="spinner-sm"></span>
+                <span class="btn-text">Save Testimonial</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="cancel-testimonial-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel-body">
+          <table class="data-table">
+            <thead>
+              <tr><th>#</th><th>Author</th><th>Quote</th><th>Rating</th><th>Date</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="all-testimonials-body">
+              <tr><td colspan="6" class="empty-state">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+'use strict';
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+const supabaseUrl = 'https://ujsobhoyzqwptarbsstm.supabase.co';
+const supabaseKey = 'sb_publishable_C6cHjn300xP5fiaiT4E8ug_4X1VGyFJ';
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtDate(dt) {
+  if (!dt) return '—';
+  try { return new Date(dt.replace(' ','T') + 'Z').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }); }
+  catch { return dt; }
+}
+
+function showToast(title, message, type = 'success') {
+  const container = document.getElementById('toast-container');
+  const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <span class="toast-icon">${icons[type]||'ℹ️'}</span>
+    <div class="toast-body">
+      <div class="toast-title">${escHtml(title)}</div>
+      <div class="toast-message">${escHtml(message)}</div>
+    </div>
+    <button class="toast-close" aria-label="Close">✕</button>
+  `;
+  container.appendChild(toast);
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+  const dismiss = () => { toast.classList.remove('show'); toast.addEventListener('transitionend', () => toast.remove(), {once:true}); };
+  toast.querySelector('.toast-close').addEventListener('click', dismiss);
+  setTimeout(dismiss, 5000);
+}
+
+function setLoading(btn, loading) {
+  btn.classList.toggle('loading', loading);
+  btn.disabled = loading;
+}
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+
+let credentials = null; // base64 for Basic auth header
+
+function getAuthHeader() {
+  return credentials ? { 'Authorization': `Basic ${credentials}` } : {};
+}
+
+async function doLogin(username, password) {
+  credentials = btoa(`${username}:${password}`);
+  // Test credentials against a protected endpoint
+  try {
+    const resp = await fetch('/api/admin/stats', {
+      headers: { ...getAuthHeader() }
+    });
+    return resp.status !== 401;
+  } catch {
+    return false;
+  }
+}
+
+// ─── API helpers ──────────────────────────────────────────────────────────────
+
+async function apiFetch(path, options = {}) {
+  const resp = await fetch(path, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...getAuthHeader(),
+      ...(options.headers || {}),
+    },
+  });
+  const json = await resp.json();
+  if (resp.status === 401) {
+    // Session expired
+    credentials = null;
+    document.getElementById('login-overlay').style.display = 'flex';
+    document.getElementById('admin-app').style.display = 'none';
+    throw new Error('Session expired');
+  }
+  return { ok: resp.ok, status: resp.status, data: json };
+}
+
+// ─── Data loaders ─────────────────────────────────────────────────────────────
+
+async function loadDashboard() {
+  try {
+    const [{ count: bCount }, { count: pCount }, { count: cCount }, { count: tCount }] = await Promise.all([
+      _supabase.from('bookings').select('*', { count: 'exact', head: true }),
+      _supabase.from('bookings').select('*', { count: 'exact', head: true }).eq('Status', 'Pending'),
+      _supabase.from('contacts').select('*', { count: 'exact', head: true }),
+      _supabase.from('testimonials').select('*', { count: 'exact', head: true })
+    ]);
+
+    document.getElementById('stat-bookings').textContent = bCount || 0;
+    document.getElementById('stat-pending').textContent = pCount || 0;
+    document.getElementById('stat-contacts').textContent = cCount || 0;
+    document.getElementById('stat-testimonials').textContent = tCount || 0;
+
+    // أحدث الحجوزات
+    const { data: recentBookings } = await _supabase.from('bookings').select('*').order('id', { ascending: false }).limit(5);
+    const rbBody = document.getElementById('recent-bookings-body');
+    if (!recentBookings || !recentBookings.length) {
+      rbBody.innerHTML = '<tr><td colspan="5" class="empty-state">No bookings yet.</td></tr>';
+    } else {
+      rbBody.innerHTML = recentBookings.map(b => `
+        <tr>
+          <td>${escHtml(b.Name)}</td>
+          <td>${escHtml(b.Email)}</td>
+          <td><span class="badge badge-${(b.Plan || '').toLowerCase()}">${b.Plan}</span></td>
+          <td><span class="badge badge-${(b.Status || 'pending').toLowerCase()}">${b.Status}</span></td>
+          <td>${fmtDate(b.Date)}</td>
+        </tr>
+      `).join('');
+    }
+
+    // أحدث الرسائل
+    const { data: recentContacts } = await _supabase.from('contacts').select('*').order('id', { ascending: false }).limit(5);
+    const rcBody = document.getElementById('recent-contacts-body');
+    if (!recentContacts || !recentContacts.length) {
+      rcBody.innerHTML = '<tr><td colspan="4" class="empty-state">No messages yet.</td></tr>';
+    } else {
+      rcBody.innerHTML = recentContacts.map(c => `
+        <tr>
+          <td>${escHtml(c.full_name)}</td>
+          <td>${escHtml(c.email)}</td>
+          <td>${escHtml(c.subject)}</td>
+          <td>${fmtDate(c.created_at)}</td>
+        </tr>
+      `).join('');
+    }
+  } catch (err) { console.error('loadDashboard', err); }
+}
+
+async function loadAllBookings() {
+  try {
+    const { data } = await _supabase.from('bookings').select('*').order('id', { ascending: false });
+    const body = document.getElementById('all-bookings-body');
+    if (!data || !data.length) {
+      body.innerHTML = '<tr><td colspan="8" class="empty-state">No bookings yet.</td></tr>';
+      return;
+    }
+    body.innerHTML = data.map(b => `
+      <tr>
+        <td>${b.id}</td>
+        <td>${escHtml(b.Name)}</td>
+        <td>${escHtml(b.Email)}</td>
+        <td>${escHtml(b.Phone)}</td>
+        <td><span class="badge badge-${(b.Plan || '').toLowerCase()}">${b.Plan}</span></td>
+        <td>
+          <select class="status-select" data-id="${b.id}" style="background:var(--bg-section);border:1px solid var(--border);color:var(--text);padding:0.3rem;border-radius:4px;">
+            <option value="Pending"   ${b.Status==='Pending'?'selected':''}>Pending</option>
+            <option value="Confirmed" ${b.Status==='Confirmed'?'selected':''}>Confirmed</option>
+            <option value="Cancelled" ${b.Status==='Cancelled'?'selected':''}>Cancelled</option>
+          </select>
+        </td>
+        <td>${fmtDate(b.Date)}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteRecord('bookings', ${b.id})">Delete</button></td>
+      </tr>
+    `).join('');
+
+    body.querySelectorAll('.status-select').forEach(sel => {
+      sel.addEventListener('change', async () => {
+        const id = sel.dataset.id;
+        const status = sel.value;
+        const { error } = await _supabase.from('bookings').update({ Status: status }).eq('id', id);
+        if (!error) showToast('Updated', `Booking #${id} status changed`, 'success');
+      });
+    });
+  } catch (err) { console.error('loadAllBookings', err); }
+}
+
+async function loadAllContacts() {
+  try {
+    const { data } = await _supabase.from('contacts').select('*').order('id', { ascending: false });
+    const body = document.getElementById('all-contacts-body');
+    if (!data || !data.length) {
+      body.innerHTML = '<tr><td colspan="7" class="empty-state">No messages yet.</td></tr>';
+      return;
+    }
+    body.innerHTML = data.map(c => `
+      <tr>
+        <td>${c.id}</td>
+        <td>${escHtml(c.full_name)}</td>
+        <td>${escHtml(c.email)}</td>
+        <td>${escHtml(c.subject)}</td>
+        <td class="msg-preview" title="${escHtml(c.message)}">${escHtml(c.message)}</td>
+        <td>${fmtDate(c.created_at)}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteRecord('contacts', ${c.id})">Delete</button></td>
+      </tr>
+    `).join('');
+  } catch (err) { console.error('loadAllContacts', err); }
+}
+
+async function loadAllTestimonials() {
+  try {
+    const { data } = await _supabase.from('testimonials').select('*').order('id', { ascending: false });
+    const body = document.getElementById('all-testimonials-body');
+    if (!data || !data.length) {
+      body.innerHTML = '<tr><td colspan="6" class="empty-state">No testimonials yet.</td></tr>';
+      return;
+    }
+    body.innerHTML = data.map(t => `
+      <tr>
+        <td>${t.id}</td>
+        <td>${escHtml(t.name)}</td>
+        <td class="msg-preview" title="${escHtml(t.quote)}">${escHtml(t.quote)}</td>
+        <td class="stars">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</td>
+        <td>${fmtDate(t.created_at)}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteRecord('testimonials', ${t.id})">Delete</button></td>
+      </tr>
+    `).join('');
+  } catch (err) { console.error('loadAllTestimonials', err); }
+}
+
+// ─── Delete records ────────────────────────────────────────────────────────────
+window.deleteRecord = async function(type, id) {
+  if (!confirm(`Delete this ${type.slice(0,-1)}? This cannot be undone.`)) return;
+  const { error } = await _supabase.from(type).delete().eq('id', id);
+  if (!error) {
+    showToast('Deleted', `Record deleted successfully.`, 'success');
+    refreshCurrentTab();
+  } else {
+    showToast('Error', error.message, 'error');
+  }
+};
+// ─── Tab navigation ───────────────────────────────────────────────────────────
+let currentTab = 'dashboard';
+window.switchTab = function(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.tab === tab);
+  });
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  currentTab = tab;
+  loadTab(tab);
+};
+function loadTab(tab) {
+  switch (tab) {
+    case 'dashboard':   loadDashboard(); break;
+    case 'bookings':    loadAllBookings(); break;
+    case 'contacts':    loadAllContacts(); break;
+    case 'testimonials': loadAllTestimonials(); break;
+  }
+}
+
+function refreshCurrentTab() { loadTab(currentTab); }
+
+document.querySelectorAll('.sidebar-nav a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchTab(a.dataset.tab);
+  });
+});
+
+document.getElementById('refresh-btn').addEventListener('click', refreshCurrentTab);
+
+// ─── Login form ───────────────────────────────────────────────────────────────
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('[type="submit"]');
+  setLoading(btn, true);
+  document.getElementById('login-error').style.display = 'none';
+
+  const username = document.getElementById('login-user').value;
+  const password = document.getElementById('login-pass').value;
+
+  const ok = await doLogin(username, password);
+  setLoading(btn, false);
+
+  if (ok) {
+    document.getElementById('login-overlay').style.display = 'none';
+    document.getElementById('admin-app').style.display = 'flex';
+    loadDashboard();
+  } else {
+    credentials = null;
+    document.getElementById('login-error').style.display = 'block';
+  }
+});
+
+// Logout
+document.getElementById('logout-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+  credentials = null;
+  document.getElementById('login-overlay').style.display = 'flex';
+  document.getElementById('admin-app').style.display = 'none';
+});
+
+// ─── Add testimonial form ─────────────────────────────────────────────────────
+
+const addTestBtn = document.getElementById('add-testimonial-btn');
+const addTestForm = document.getElementById('add-testimonial-form');
+const cancelTestBtn = document.getElementById('cancel-testimonial-btn');
+
+addTestBtn.addEventListener('click', () => addTestForm.classList.add('open'));
+cancelTestBtn.addEventListener('click', () => {
+  addTestForm.classList.remove('open');
+  document.getElementById('testimonial-form').reset();
+});
+
+document.getElementById('testimonial-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('[type="submit"]');
+  setLoading(btn, true);
+
+  const formData = new FormData(form);
+  const testimonialData = {
+    name: formData.get('name'),
+    rating: parseInt(formData.get('rating')),
+    quote: formData.get('quote'),
+    image_url: formData.get('image_url') || null,
+    created_at: new Date().toISOString()
+  };
+
+  const { error } = await _supabase.from('testimonials').insert([testimonialData]);
+  
+  setLoading(btn, false);
+  
+  if (!error) {
+    showToast('Added!', 'Testimonial saved successfully.', 'success');
+    form.reset();
+    document.getElementById('add-testimonial-form').classList.remove('open');
+    loadAllTestimonials();
+    loadDashboard();
+  } else {
+    showToast('Error', error.message, 'error');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Performance Gym — Transform your body, elevate your mind. State-of-the-art facilities, expert trainers, and flexible membership plans." />
+  <meta name="keywords" content="gym, fitness, membership, personal training, performance gym" />
+  <meta property="og:title" content="Performance Gym — Elevate Your Performance" />
+  <meta property="og:description" content="Transform your body, elevate your mind. Join Performance Gym today." />
+  <meta property="og:type" content="website" />
+  <title>Performance Gym — Elevate Your Performance</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- ─── Toast Container ──────────────────────────────────── -->
+<div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ─── Navbar ───────────────────────────────────────────── -->
+<header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="#hero" class="navbar-brand">PERF<span>GYM</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#join">Join</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#join" class="nav-cta">Get Started</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section id="hero" class="hero" role="banner">
+  <div class="container">
+    <div class="hero-content">
+
+      <span class="hero-badge">Elite Training • Recovery • Performance</span>
+
+      <h1>
+        Train Stronger.<br/>
+        Recover Smarter.<br/>
+        Perform Better.
+      </h1>
+
+      <p>
+        Performance Gym is more than a workout space — it's a complete performance environment
+        designed to help you build strength, improve endurance, and accelerate recovery with
+        expert coaching and premium wellness facilities.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#pricing" class="btn btn-primary">
+          Explore Membership Options <span>→</span>
+        </a>
+
+        <a href="#join" class="btn btn-outline">
+          Book Your Free Assessment
+        </a>
+      </div>
+
+      <div class="hero-stats">
+
+        <div>
+          <div class="hero-stat-num" data-count="500" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Active Members</div>
+        </div>
+
+        <div>
+          <div class="hero-stat-num" data-count="15" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Professional Coaches</div>
+        </div>
+
+        <div>
+          <div class="hero-stat-num" data-count="4" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Recovery Facilities Included</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Features ─────────────────────────────────────────── -->
+<section id="features" class="section section-alt">
+  <div class="container text-center">
+
+    <h2 class="section-title fade-in">
+      Why Choose <span class="text-primary">Performance Gym?</span>
+    </h2>
+
+    <p class="section-subtitle fade-in fade-in-delay-1">
+      A complete training experience combining strength development,
+      recovery science, and professional coaching under one roof.
+    </p>
+
+    <div class="features-grid">
+
+      <div class="feature-card fade-in fade-in-delay-1">
+        <span class="feature-icon">♨️</span>
+        <h3>Unlimited Recovery Zone Access</h3>
+        <p>
+          Enjoy sauna, steam room, ice pool, and jacuzzi access included
+          with your membership to help your body recover faster and train stronger.
+        </p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-2">
+        <span class="feature-icon">📊</span>
+        <h3>Body Composition Tracking</h3>
+        <p>
+          Monitor your progress with professional InBody assessments
+          designed to keep your transformation measurable and consistent.
+        </p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-3">
+        <span class="feature-icon">🥊</span>
+        <h3>Kickboxing Training Sessions</h3>
+        <p>
+          Improve strength, endurance, and conditioning through guided
+          kickboxing sessions included in multiple membership plans.
+        </p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-4">
+        <span class="feature-icon">🧑‍⚕️</span>
+        <h3>Physiotherapy Consultation</h3>
+        <p>
+          Receive professional physiotherapy guidance to prevent injuries
+          and support long-term performance improvement.
+        </p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-1">
+        <span class="feature-icon">🤝</span>
+        <h3>Guest Invitations Included</h3>
+        <p>
+          Share the experience with friends using guest invitations
+          included in your membership package.
+        </p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-2">
+        <span class="feature-icon">⏸️</span>
+        <h3>Flexible Membership Freeze</h3>
+        <p>
+          Pause your membership when needed with flexible freeze options
+          available across all long-term plans.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ───────────────────────────────────────────── -->
+<section id="pricing" class="section">
+  <div class="container text-center">
+
+    <h2 class="section-title fade-in">
+      Choose Your <span class="text-primary">Performance Level</span>
+    </h2>
+
+    <p class="section-subtitle fade-in fade-in-delay-1">
+      Flexible membership plans designed to support your training,
+      recovery, and long-term transformation journey.
+    </p>
+
+    <div class="pricing-grid">
+
+      <!-- UNSTOPPABLE -->
+      <div class="pricing-card popular fade-in fade-in-delay-1">
+
+        <div class="pricing-badge">Best Value</div>
+
+        <h3>Unstoppable</h3>
+
+        <div class="pricing-price">
+          6600 <span>LE / Year</span>
+        </div>
+
+        <p class="pricing-description">
+          Maximum performance. Maximum recovery. Maximum results.
+        </p>
+
+        <ul class="pricing-features">
+          <li>28 Guest Invitations</li>
+          <li>12 Weeks Membership Freeze</li>
+          <li>5 Personal Training Sessions</li>
+          <li>4 InBody Assessments</li>
+          <li>1 Physiotherapy Consultation</li>
+          <li>2 Kickboxing Sessions</li>
+          <li>Unlimited Spa Access (Sauna • Steam • Ice Pool • Jacuzzi)</li>
+        </ul>
+
+        <button class="btn btn-primary" style="width:100%" data-plan="unstoppable">
+          Start Unstoppable
+        </button>
+
+      </div>
+
+
+      <!-- OPTIMIZED -->
+      <div class="pricing-card fade-in fade-in-delay-2">
+
+        <h3>Optimized</h3>
+
+        <div class="pricing-price">
+          4500 <span>LE / 6 Months</span>
+        </div>
+
+        <p class="pricing-description">
+          Build momentum and stay consistent with structured progress support.
+        </p>
+
+        <ul class="pricing-features">
+          <li>18 Guest Invitations</li>
+          <li>5 Weeks Membership Freeze</li>
+          <li>3 Personal Training Sessions</li>
+          <li>2 InBody Assessments</li>
+          <li>1 Physiotherapy Consultation</li>
+          <li>2 Kickboxing Sessions</li>
+          <li>Unlimited Spa Access</li>
+        </ul>
+
+        <button class="btn btn-outline" style="width:100%" data-plan="optimized">
+          Choose Optimized
+        </button>
+
+      </div>
+
+
+      <!-- STANDARD -->
+      <div class="pricing-card fade-in fade-in-delay-3">
+
+        <h3>Standard</h3>
+
+        <div class="pricing-price">
+          3200 <span>LE / 3 Months</span>
+        </div>
+
+        <p class="pricing-description">
+          A strong starting point for building your training routine.
+        </p>
+
+        <ul class="pricing-features">
+          <li>10 Guest Invitations</li>
+          <li>2 Weeks Membership Freeze</li>
+          <li>2 Personal Training Sessions</li>
+          <li>1 InBody Assessment</li>
+          <li>1 Physiotherapy Consultation</li>
+          <li>2 Kickboxing Sessions</li>
+          <li>Unlimited Spa Access</li>
+        </ul>
+
+        <button class="btn btn-outline" style="width:100%" data-plan="standard">
+          Choose Standard
+        </button>
+
+      </div>
+
+
+      <!-- SPARK -->
+      <div class="pricing-card fade-in fade-in-delay-4">
+
+        <h3>The Spark</h3>
+
+        <div class="pricing-price">
+          1600 <span>LE / Month</span>
+        </div>
+
+        <p class="pricing-description">
+          Start your transformation and experience the Performance Gym environment.
+        </p>
+
+        <ul class="pricing-features">
+          <li>5 Guest Invitations</li>
+          <li>Machine Orientation Session</li>
+          <li>1 Kickboxing Session</li>
+          <li>Unlimited Spa Access</li>
+        </ul>
+
+        <button class="btn btn-outline" style="width:100%" data-plan="spark">
+          Start The Spark
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ──────────────────────────────────────── -->
+<section id="testimonials" class="section section-alt">
+  <div class="container text-center">
+    <h2 class="section-title fade-in">What Our <span class="text-primary">Members</span> Say</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">Real results from real people. Join our community of achievers.</p>
+
+    <div class="testimonials-grid" id="testimonials-grid">
+      <!-- Loaded dynamically via JS -->
+      <div style="text-align:center;padding:3rem;color:var(--text-muted)">
+        <div class="spinner"></div>
+        <p style="margin-top:1rem">Loading testimonials…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA Banner ────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">
+      Your Stronger Version<br/>
+      Starts Here.
+    </h2>
+    <p class="fade-in fade-in-delay-1">
+      Join Performance Gym and experience professional coaching, body composition tracking, kickboxing training sessions,
+      and full recovery zone access — all designed to help you train smarter and achieve real results faster.
+    </p>
+    <a href="#join"
+      class="btn btn-outline fade-in fade-in-delay-2"
+      style="border-color:#fff;color:#fff">
+      Book Your First Visit →
+    </a>
+  </div>
+</section>
+
+<!-- ─── Join / Membership Request + Contact ──────────────────────────── -->
+<section id="join" class="section">
+  <div class="container">
+
+    <div class="text-center">
+      <h2 class="section-title fade-in">
+        Start Your <span class="text-primary">Membership Request</span>
+      </h2>
+
+      <p class="section-subtitle fade-in fade-in-delay-1">
+        Fill out the form below and our team will contact you shortly to confirm
+        your membership details and schedule your first visit.
+      </p>
+    </div>
+
+
+    <div class="forms-grid" id="contact">
+
+
+      <!-- Membership Request Form -->
+      <div class="form-card fade-in">
+
+        <h3>
+          Apply for <span class="text-primary">Membership</span>
+        </h3>
+
+        <p>
+          Choose your preferred membership plan and our team will follow up with you.
+        </p>
+
+
+        <form id="booking-form" novalidate>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="b-name">Full Name *</label>
+              <input
+                type="text"
+                id="b-name"
+                name="name"
+                placeholder="Your full name"
+                autocomplete="name"
+                required
+              />
+              <span class="field-error" data-error="name"></span>
+            </div>
+
+
+            <div class="form-group">
+              <label for="b-phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="b-phone"
+                name="phone"
+                placeholder="01XXXXXXXXX"
+                autocomplete="tel"
+                required
+              />
+              <span class="field-error" data-error="phone"></span>
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+            <label for="b-email">Email Address *</label>
+            <input
+              type="email"
+              id="b-email"
+              name="email"
+              placeholder="example@email.com"
+              autocomplete="email"
+              required
+            />
+            <span class="field-error" data-error="email"></span>
+          </div>
+
+
+          <div class="form-group">
+            <label for="b-plan">Preferred Membership Plan *</label>
+
+            <select id="b-plan" name="plan" required>
+
+              <option value="">— Select a plan —</option>
+
+              <option value="spark">
+                The Spark (1 Month — 1600 LE)
+              </option>
+
+              <option value="standard">
+                Standard (3 Months — 3200 LE)
+              </option>
+
+              <option value="optimized">
+                Optimized (6 Months — 4500 LE)
+              </option>
+
+              <option value="unstoppable">
+                Unstoppable (12 Months — 6600 LE)
+              </option>
+
+            </select>
+
+            <span class="field-error" data-error="plan"></span>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width:100%"
+          >
+
+            <span class="spinner-sm"></span>
+
+            <span class="btn-text">
+              Submit Membership Request
+            </span>
+
+          </button>
+
+        </form>
+
+      </div>
+
+
+
+      <!-- Contact Form -->
+      <div class="form-card fade-in fade-in-delay-2">
+
+        <h3>
+          Ask a <span class="text-primary">Question</span>
+        </h3>
+
+        <p>
+          Need help choosing the right plan? Send us your question and our team
+          will respond as soon as possible.
+        </p>
+
+
+        <form id="contact-form" novalidate>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="c-name">Full Name *</label>
+              <input
+                type="text"
+                id="c-name"
+                name="name"
+                placeholder="Your full name"
+                autocomplete="name"
+                required
+              />
+              <span class="field-error" data-error="name"></span>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email Address *</label>
+              <input
+                type="email"
+                id="c-email"
+                name="email"
+                placeholder="example@email.com"
+                autocomplete="email"
+                required
+              />
+              <span class="field-error" data-error="email"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="c-subject">Subject *</label>
+            <input
+              type="text"
+              id="c-subject"
+              name="subject"
+              placeholder="Membership question, schedule visit, pricing details..."
+              required
+            />
+            <span class="field-error" data-error="subject"></span>
+          </div>
+          <div class="form-group">
+            <label for="c-message">Message *</label>
+            <textarea
+              id="c-message"
+              name="message"
+              placeholder="Tell us how we can help you..."
+              required
+            ></textarea>
+            <span class="field-error" data-error="message"></span>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width:100%"
+          >
+            <span class="spinner-sm"></span>
+            <span class="btn-text">
+              Send Message
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <!-- Brand Column -->
+    <div class="footer-brand">
+      <h3>
+        Performance <span class="text-primary">Gym</span>
+      </h3>
+      <p>
+        A premium training environment designed to help you build strength,
+        improve performance, and recover smarter with professional coaching
+        and full recovery zone access.
+      </p>
+      <!-- Social Icons -->
+      <div class="footer-socials">
+
+        <a href="https://www.facebook.com/Performance.gym1"
+          target="_blank"
+          aria-label="Performance Gym Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/performance_gym__"
+          target="_blank"
+          aria-label="Performance Gym Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://maps.app.goo.gl/MU8dpoJ3yE9tg5TWA"
+          target="_blank"
+          aria-label="Performance Gym Location">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Quick Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#plans">Membership Plans</a></li>
+        <li><a href="#features">Facilities</a></li>
+        <li><a href="#join">Membership Request</a></li>
+      </ul>
+    </div>
+    <!-- Facilities -->
+    <div>
+      <h4>Facilities</h4>
+      <ul class="footer-links">
+        <li>Personal Training</li>
+        <li>Kickboxing Sessions</li>
+        <li>Body Composition Analysis</li>
+        <li>Sauna & Steam</li>
+        <li>Ice Pool & Jacuzzi</li>
+      </ul>
+    </div>
+    <!-- Contact -->
+    <div>
+      <h4>Visit Us</h4>
+      <ul class="footer-links">
+        <li>
+          <a href="https://maps.app.goo.gl/MU8dpoJ3yE9tg5TWA"
+          target="_blank">
+            Open Location on Google Maps
+          </a>
+        </li>
+        <li>
+          Follow us on social media for updates & announcements
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Bottom Footer -->
+  <div class="footer-bottom">
+    <p>
+      © <span id="year"></span> Performance Gym. All rights reserved.
+      <span class="footer-credit">
+        Developed by
+        <a href="https://www.linkedin.com/in/youssef-hanafy-7986342a8"
+          target="_blank"
+          aria-label="Youssef Hanafy LinkedIn">
+          Youssef Hanafy
+        </a>
+      </span>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
